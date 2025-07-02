@@ -1,24 +1,18 @@
+
 import './App.css'
 import Header from "./components/Header.jsx";
-import Friends from "./components/Friends.jsx";
-import Contacts from "./components/Contacts.jsx";
+import Main from "./components/Main.jsx";
+import Footer from "./components/Footer.jsx";
 
 function App() {
     return (
-        <>
-            <div className="Header">
-                <Header/>
-            </div>
-            <main className="clearfix">
-                <Friends/>
+        <div className="container-fluid">
+            <Header/>
+            <Main/>
+            <Footer/>
+        </div>
 
-            </main>
-            <div className="Footer">
-                <Contacts/>
-            </div>
-
-        </>
-    )
+)
 }
 
 export default App

@@ -1,21 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Poller+One&display=swap');
-
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-body {
-    font-family: "Poller One", serif;
-    background-image: url("./assets/Images/sky.jpg");
-    color: #eedb00;
-    background-attachment: fixed;
-}
-
 header, footer {
     background-color: rgba(60, 69, 67, 0.6);
 }
+
+
+/* header */
+
+
+
+
+/* main */
+
+
+.float-start img {
+    box-shadow: 0.6rem 0.6rem 0.6rem rgba(60, 69, 67, 0.6);
+}
+
 
 .farGalaxy {
     font-size: 1.7em;
@@ -23,33 +22,32 @@ header, footer {
     line-height: 1.6;
 }
 
-.float-start img{
-    box-shadow: 10px 10px 10px rgba(60, 69, 67, 0.6);
-}
-
 
 .bottomRight {
     border-bottom-right-radius: 1rem;
 }
 
+
 .bottomLeft {
     border-bottom-left-radius: 1rem;
 }
 
-img {
-    width: 100%;
-}
-/*footer*/
+
+/* footer */
 
 
 
-/* bootstrap customizations */
-.btn-danger{
+
+/* bootstrap customization */
+
+
+.btn-danger {
     border: 2px solid black;
     background-color: rgba(204, 3, 35, 0.5);
     color: #eedb00;
 }
-.border{
+
+
+.border {
     border-color: #eedb00 !important;
 }
-

@@ -1,10 +1,6 @@
-import React from 'react';
 
-const Content = () => {
-    return (
-        <>
-            <p className="farGalaxy">
-                It is a period of civil war.
+export const navItems = ['Home', 'About me', 'Star Wars', 'Contact'];
+export const openingCrawl = `It is a period of civil war.
                 Rebel spaceships, striking
                 from a hidden base, have won
                 their first victory against
@@ -24,12 +20,4 @@ const Content = () => {
                 starship, custodian of the
                 stolen plans that can save her
                 people and restore
-                freedom to the galaxy....
-            </p>
-        </>
-
-
-    );
-};
-
-export default Content;
+                freedom to the galaxy....`
