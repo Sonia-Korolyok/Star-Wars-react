@@ -1,11 +1,14 @@
-import {openingCrawl} from "../utils/constants.js";
+import hero from "../assets/Images/main.jpg";
+import React from "react";
 
 
-const OpeningCrawl = () => {
+const Hero = () => {
     return (
-        <p className="farGalaxy">{openingCrawl}</p>
+        <section className="float-start w-25 me-3">
+            <img className="w-100" src={hero} title="Hero" alt="Hero"/>
+        </section>
     );
 };
 
 
-export default OpeningCrawl;
+export default Hero;
