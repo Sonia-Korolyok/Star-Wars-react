@@ -30,6 +30,7 @@ export const openingCrawl = `It is a period of civil war.
                 stolen plans that can save her
                 people and restore
                 freedom to the galaxy....`
+export const base_url = 'https://sw-info-api.herokuapp.com'
 export const dreamTeam = [friend1, friend2, friend3, friend4, friend5, friend6, friend7, friend8, friend9];
 export const starWarsInfo = `Star Wars is an American epic space opera media franchise created by George Lucas, which began with the eponymous 1977 film and quickly became a worldwide pop culture phenomenon. The franchise has been expanded into various films and other media, including television series, video games, novels, comic books, theme park attractions, and themed areas, comprising an all-encompassing fictional universe. Star Wars is one of the highest-grossing media franchises of all time.
 
