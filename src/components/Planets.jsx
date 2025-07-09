@@ -2,12 +2,15 @@ import React, {useEffect, useState} from 'react';
 import {base_url} from "../utils/constants.js";
 import Planet from "./Planet.jsx";
 
+
 const Planets = () => {
     const [planets, setPlanets] = useState([]);
     useEffect(() => {
-        fetch(`${base_url}/v1/planets}`)
+        fetch(`${base_url}/v1/planets`)
             .then(res => res.json())
             .then(data => setPlanets(data))
+            .catch(err => console.error(err));
+        return () => console.log('Planets was unmounted!');
     }, [])
     return (
         <div className="form-group mb-3">
