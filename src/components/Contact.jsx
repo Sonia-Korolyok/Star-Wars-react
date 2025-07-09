@@ -1,9 +1,10 @@
 import React from 'react';
+import Form from "./Form.jsx";
 
 const Contact = () => {
     return (
         <div>
-            Contact
+            <Form/>
         </div>
     );
 };

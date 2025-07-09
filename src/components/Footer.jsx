@@ -1,4 +1,3 @@
-
 const Footer = () => {
     return (
         <footer className="py-4 rounded-bottom-4 row">
