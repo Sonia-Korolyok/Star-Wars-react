@@ -1,14 +1,32 @@
-
-import {base_url} from "../utils/constants.js";
+import {base_url, getDatePlus30Days} from "../utils/constants.js";
 import {useEffect, useState} from "react";
 
 const AboutMe = () => {
     const [hero, setHero] = useState();
+
     useEffect(() => {
+        const now = new Date().getTime()
+
+        const aboutMeInfo = localStorage.getItem('info');
+        let parsed;
+
+        if (aboutMeInfo) {
+            parsed = JSON.parse(aboutMeInfo);
+        }
+
+        if (parsed && now < parsed.expiry) {
+            setHero(parsed);
+            return;
+        } else {
+            localStorage.removeItem('info');
+        }
+
+
         fetch(`${base_url}/v1/peoples/1`)
             .then(response => response.json())
             .then(data => {
                 const info = {
+                    expiry: getDatePlus30Days(),
                     name: data.name,
                     gender: data.gender,
                     birth_year: data.birth_year,
@@ -18,8 +36,12 @@ const AboutMe = () => {
                     skin_color: data.skin_color,
                     eye_color: data.eye_color
                 }
+
+                localStorage.setItem('info', JSON.stringify(info));
                 setHero(info);
-            })
+            });
+
+
     }, [])
 
     return (

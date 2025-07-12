@@ -1,20 +1,46 @@
-
 import '../Contact.css'
 import {useEffect, useState} from "react";
-import {base_url} from "../utils/constants.js";
+import {base_url, getDatePlus30Days} from "../utils/constants.js";
 
 const Contact = () => {
     const [planets, setPlanets] = useState(['wait...']);
 
-    async function getPlanets() {
-        const res = await fetch(`${base_url}/v1/planets`);
-        const data = await res.json();
-        setPlanets(data.map(item => item.name));
-    }
 
     useEffect(() => {
-        getPlanets().then(() => console.log('Planets were loaded'));
-    }, [])
+        const getPlanets = async () => {
+            const now = new Date();
+            const loaded = localStorage.getItem('planets');
+            console.log('Planets were loaded')
+            let parsedPlanets;
+            if (loaded) {
+                parsedPlanets = JSON.parse(loaded);
+                if (now.getTime() < parsedPlanets.expiry) {
+                    setPlanets(parsedPlanets.planets);
+                    return;
+                } else {
+                    console.log('planets expired');
+                    localStorage.removeItem('planets');
+                }
+            }
+
+            try {
+                const res = await fetch(`${base_url}/v1/planets`);
+                const data = await res.json();
+                const planetNames = data.map(item => item.name);
+                setPlanets(planetNames);
+                localStorage.setItem(
+                    'planets',
+                    JSON.stringify({
+                        planets: planetNames,
+                        expiry: getDatePlus30Days()
+                    })
+                );
+            } catch (err) {
+                console.error('Failed to fetch planets:', err);
+            }
+        };
+        getPlanets().then((data) => {console.log('123')});
+    }, []);
 
     return (
         <form className="container" onSubmit={e => {
