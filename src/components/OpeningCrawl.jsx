@@ -24,7 +24,7 @@ const OpeningCrawl = () => {
 
     if (openingCrawl) {
         return (
-            <p className="farGalaxy">{openingCrawl}</p>
+            <p className="text-[1.7em] text-justify leadinh[1.6]">{openingCrawl}</p>
         );
     } else {
         return (

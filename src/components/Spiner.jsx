@@ -3,8 +3,8 @@ import React from 'react';
 const Spiner = () => {
     return (
         <div>
-            <p className="farGalaxy">
-                <span className="spinner-border spinner-border-sm"></span>
+            <p>
+                <span className="text-[1.7em] text-justify leadinh[1.6]"></span>
                 Loading...
             </p>
         </div>
