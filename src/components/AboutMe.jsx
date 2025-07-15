@@ -1,5 +1,6 @@
 import {base_url, expiry} from "../utils/constants.js";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
+import Luke from "../assets/Images/main.jpg";
 
 const AboutMe = () => {
     const [hero, setHero] = useState();
@@ -33,16 +34,20 @@ const AboutMe = () => {
     return (
         <>
             {(!!hero) &&
-                <div className='text-4xl leading-14 text-justify ml-[64px]'>
-                    <p><span className='display-3'>name:</span> {hero.name}</p>
-                    <p><span className='display-3'>gender:</span> {hero.gender}</p>
-                    <p><span className='display-3'>birth year:</span> {hero.birth_year}</p>
-                    <p><span className='display-3'>height:</span> {hero.height}</p>
-                    <p><span className='display-3'>mass:</span> {hero.mass}</p>
-                    <p><span className='display-3'>hair color:</span> {hero.hair_color}</p>
-                    <p><span className='display-3'>skin color:</span> {hero.skin_color}</p>
-                    <p><span className='display-3'>eye color:</span> {hero.eye_color}</p>
+                <div className='text-4xl leading-14 text-justify ml-[64px] flex '>
+                    <div>
+                        <p><span className='display-3'>name:</span> {hero.name}</p>
+                        <p><span className='display-3'>gender:</span> {hero.gender}</p>
+                        <p><span className='display-3'>birth year:</span> {hero.birth_year}</p>
+                        <p><span className='display-3'>height:</span> {hero.height}</p>
+                        <p><span className='display-3'>mass:</span> {hero.mass}</p>
+                        <p><span className='display-3'>hair color:</span> {hero.hair_color}</p>
+                        <p><span className='display-3'>skin color:</span> {hero.skin_color}</p>
+                        <p><span className='display-3'>eye color:</span> {hero.eye_color}</p>
+                    </div>
+                    <img className="w-1/3 shadow-hero rounded-2xl h-1/2 m-20" src={Luke} title="Hero" alt="Hero"/>
                 </div>
+
             }
         </>
     );

@@ -44,7 +44,7 @@ const Contact = () => {
             <label>Subject
                 <textarea name="subject" placeholder="Write something.."></textarea>
             </label>
-            <button className="w-50" type="submit">Submit</button>
+            <button className="w-50 self-end m-4" type="submit">Submit</button>
         </form>
     )
 };
