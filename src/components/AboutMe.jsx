@@ -1,53 +1,39 @@
-import {base_url, getDatePlus30Days} from "../utils/constants.js";
+import {base_url, expiry} from "../utils/constants.js";
 import {useEffect, useState} from "react";
 
 const AboutMe = () => {
     const [hero, setHero] = useState();
-
     useEffect(() => {
-        const now = new Date().getTime()
-
-        const aboutMeInfo = localStorage.getItem('info');
-        let parsed;
-
-        if (aboutMeInfo) {
-            parsed = JSON.parse(aboutMeInfo);
-        }
-
-        if (parsed && now < parsed.expiry) {
-            setHero(parsed);
-            return;
+        const hero = JSON.parse(localStorage.getItem("hero"));
+        if (hero && ((Date.now() - hero.timestamp) < expiry)) {
+            setHero(hero.payload);
         } else {
-            localStorage.removeItem('info');
+            fetch(`${base_url}/v1/peoples/1`)
+                .then(response => response.json())
+                .then(data => {
+                    const info = {
+                        name: data.name,
+                        gender: data.gender,
+                        birth_year: data.birth_year,
+                        height: data.height,
+                        mass: data.mass,
+                        hair_color: data.hair_color,
+                        skin_color: data.skin_color,
+                        eye_color: data.eye_color
+                    }
+                    setHero(info);
+                    localStorage.setItem("hero", JSON.stringify({
+                        payload: info,
+                        timestamp: Date.now()
+                    }));
+                })
         }
-
-
-        fetch(`${base_url}/v1/peoples/1`)
-            .then(response => response.json())
-            .then(data => {
-                const info = {
-                    expiry: getDatePlus30Days(),
-                    name: data.name,
-                    gender: data.gender,
-                    birth_year: data.birth_year,
-                    height: data.height,
-                    mass: data.mass,
-                    hair_color: data.hair_color,
-                    skin_color: data.skin_color,
-                    eye_color: data.eye_color
-                }
-
-                localStorage.setItem('info', JSON.stringify(info));
-                setHero(info);
-            });
-
-
     }, [])
 
     return (
         <>
             {(!!hero) &&
-                <div className='fs-2 lh-lg text-justify ms-5'>
+                <div className='text-4xl leading-14 text-justify ml-[64px]'>
                     <p><span className='display-3'>name:</span> {hero.name}</p>
                     <p><span className='display-3'>gender:</span> {hero.gender}</p>
                     <p><span className='display-3'>birth year:</span> {hero.birth_year}</p>

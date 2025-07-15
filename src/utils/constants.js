@@ -7,29 +7,10 @@ import friend6 from "../assets/Images/friend6.jpg";
 import friend7 from "../assets/Images/friend7.jpg";
 import friend8 from "../assets/Images/friend8.jpg";
 import friend9 from "../assets/Images/friend9.jpg";
+import {createContext} from "react";
 
+export const SWcontext = createContext();
 export const navItems = ['Home', 'About me', 'Star Wars', 'Contact'];
-export const openingCrawl = `It is a period of civil war.
-                Rebel spaceships, striking
-                from a hidden base, have won
-                their first victory against
-                the evil Galactic Empire.
-
-                During the battle, Rebel
-                spies managed to steal secret
-                plans to the Empire's
-                ultimate weapon, the DEATH
-                STAR, an armored space
-                station with enough power
-                to destroy an entire planet.
-
-                Pursued by the Empire's
-                sinister agents, Princess
-                Leia races home aboard her
-                starship, custodian of the
-                stolen plans that can save her
-                people and restore
-                freedom to the galaxy....`
 export const base_url = 'https://sw-info-api.herokuapp.com'
 export const dreamTeam = [friend1, friend2, friend3, friend4, friend5, friend6, friend7, friend8, friend9];
 export const starWarsInfo = `Star Wars is an American epic space opera media franchise created by George Lucas, which began with the eponymous 1977 film and quickly became a worldwide pop culture phenomenon. The franchise has been expanded into various films and other media, including television series, video games, novels, comic books, theme park attractions, and themed areas, comprising an all-encompassing fictional universe. Star Wars is one of the highest-grossing media franchises of all time.
@@ -38,8 +19,5 @@ The original 1977 film, retroactively subtitled Episode IV: A New Hope, was foll
 
 All nine films, collectively referred to as the "Skywalker Saga", were nominated for Academy Awards, with Oscars going to the first three releases. Together with the theatrical live action "anthology" films Rogue One (2016) and Solo (2018), the combined box office revenue of the films equate to over US$10 billion, making Star Wars the third-highest-grossing film franchise in cinematic history.`
 
-export const aboutMeItems = ['name', 'gender', 'birth_year', 'height', 'mass', "eye_color", "hair_color", "skin_color"];
-
 export const expiry = 30 * 24 * 60 * 60 * 1000;
-
-export const getDatePlus30Days = () => new Date().getTime() + expiry;
+// export const getDatePlus30Days = () => new Date().getTime() + expiry;

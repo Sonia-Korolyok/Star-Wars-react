@@ -1,49 +1,32 @@
 import '../Contact.css'
 import {useEffect, useState} from "react";
-import {base_url, getDatePlus30Days} from "../utils/constants.js";
+import {base_url, expiry} from "../utils/constants.js";
 
 const Contact = () => {
     const [planets, setPlanets] = useState(['wait...']);
 
+    async function getPlanets() {
+        const res = await fetch(`${base_url}/v1/planets`);
+        const data = await res.json();
+        const planets = data.map(item => item.name);
+        setPlanets(planets);
+        localStorage.setItem('planets', JSON.stringify({
+            payload: planets,
+            time: Date.now()
+        }));
+    }
 
     useEffect(() => {
-        const getPlanets = async () => {
-            const now = new Date();
-            const loaded = localStorage.getItem('planets');
-            console.log('Planets were loaded')
-            let parsedPlanets;
-            if (loaded) {
-                parsedPlanets = JSON.parse(loaded);
-                if (now.getTime() < parsedPlanets.expiry) {
-                    setPlanets(parsedPlanets.planets);
-                    return;
-                } else {
-                    console.log('planets expired');
-                    localStorage.removeItem('planets');
-                }
-            }
-
-            try {
-                const res = await fetch(`${base_url}/v1/planets`);
-                const data = await res.json();
-                const planetNames = data.map(item => item.name);
-                setPlanets(planetNames);
-                localStorage.setItem(
-                    'planets',
-                    JSON.stringify({
-                        planets: planetNames,
-                        expiry: getDatePlus30Days()
-                    })
-                );
-            } catch (err) {
-                console.error('Failed to fetch planets:', err);
-            }
-        };
-        getPlanets().then((data) => {console.log('123')});
-    }, []);
+        const planets = JSON.parse(localStorage.getItem('planets'));
+        if (planets && ((Date.now() - planets.time) < expiry)) {
+            setPlanets(planets.payload);
+        } else {
+            getPlanets().then(() => console.log('Planets were loaded'));
+        }
+    }, [])
 
     return (
-        <form className="container" onSubmit={e => {
+        <form className="@container ms-30 rounded-t-2xl rounded-b-2xl w-300 flex flex-col ps-8 pe-8 bg-zinc-50" onSubmit={e => {
             e.preventDefault();
         }}>
             <label>First Name
@@ -61,7 +44,7 @@ const Contact = () => {
             <label>Subject
                 <textarea name="subject" placeholder="Write something.."></textarea>
             </label>
-            <button type="submit">Submit</button>
+            <button className="w-50" type="submit">Submit</button>
         </form>
     )
 };
